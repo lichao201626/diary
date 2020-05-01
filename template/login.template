@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>login</title>
+  </head>
+  <body id="body">
+    <h3>Diary</h3>
+    <p>username:
+        <input id='username'></input>
+    </p>
+    <p>pwd:
+        <input id='pwd'></input>
+    </p>
+    <p>
+        <button onclick=submit()> submit </button>
+    </p>
+    <script>
+
+    function submit(){
+        //alert("submit")
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","http://127.0.0.1:8880/user/login",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState==4) {
+                if (xmlhttp.status==200) {// 200 = OK
+                    // ...our code here...
+                    console.log(xmlhttp.response)
+                    // console.log( document.getElementById("body"))
+                    // document.getElementById("body").innerHtml='';
+                    document.getElementById("body").innerHTML=xmlhttp.response
+                }   else {
+                }
+            }
+        }
+    }
+    // submit();
+    </script>
+  </body>
+</html>
