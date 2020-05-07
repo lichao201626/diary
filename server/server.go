@@ -8,7 +8,8 @@ import (
 
 func main() {
 	//监听协议
-	http.HandleFunc("/hello", HelloWorldHandler)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("../png")))) //
+	http.HandleFunc("/", HelloWorldHandler)
 	http.HandleFunc("/user/login", UserLoginHandler)
 	//监听服务
 	err := http.ListenAndServe("0.0.0.0:8880", nil)
