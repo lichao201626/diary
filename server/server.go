@@ -33,7 +33,7 @@ func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
 
 func UserLoginHandler(response http.ResponseWriter, request *http.Request) {
 	fmt.Println("Handler Hello")
-	t, _ := template.ParseFiles("../template/notfound.html")
+	t, _ := template.ParseFiles("../template/content.html")
 	t.Execute(response, "")
 	// fmt.Fprintf(response, "Login Success")
 }
