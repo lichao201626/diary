@@ -13,7 +13,7 @@
         body {
             background-position: center center;
             background: url(http://127.0.0.1:8880/static/png/content.png);
-            background-size: 100% 100%;
+            background-size: contain;
             filter: alpha(opacity=50);
             -moz-opacity: 0.5;
             -khtml-opacity: 0.5;
@@ -32,15 +32,40 @@
             right: 0;
             left: 0;
             bottom: 0;
+        }
+
+        textarea {
+            resize: none;
+            height: 100%;
+            width: 95%;
             font-family: sans-serif;
-            font-size: 2em;
+            font-style: normal;
+            letter-spacing: 0.2em;
+            font-size: 1.5em;
+        }
+        a,input {
+            margin-top: 5em;
+            margin-right: 1em;
+            font-size: 1.2em;
+            font-weight: bolder;
+            background-color:tomato;
+            writing-mode:horizontal-tb;
         }
     </style>
 </head>
 
 <body>
+        <form  action="http://127.0.0.1:8880/hello" method="post">
+            <div>
+        <textarea>
+            {{ .}}
+        </textarea>
+        <a href="http://127.0.0.1:8880/hello">New</a>
+        <a href="http://127.0.0.1:8880/random">Rand</a>
+        <input class='input' type="submit" value="Save">
+        </div>
 
-    <div>{{ .}}</div>
+        </form>
 </body>
 
 </html>
