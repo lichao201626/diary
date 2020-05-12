@@ -1,11 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"html/template"
-	"net/http"
-)
-
 var text = `
 葬花吟--
 			花谢花飞飞满天，红消香断有谁怜？
@@ -35,39 +29,3 @@ var text = `
 			试看春残花渐落，便是红颜老死时。
 			一朝春尽红颜老，花落人亡两不知！
 `
-
-func main() {
-	//监听协议
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
-	http.HandleFunc("/", HelloWorldHandler)
-	http.HandleFunc("/user/login", UserLoginHandler)
-	//监听服务
-	err := http.ListenAndServe("0.0.0.0:8880", nil)
-
-	if err != nil {
-		fmt.Println("服务器错误", err)
-	}
-}
-
-func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("r.Method = ", r.Method)
-	fmt.Println("r.URL = ", r.URL)
-	fmt.Println("r.Header = ", r.Header)
-	fmt.Println("r.Body = ", r.Body)
-
-	t, _ := template.ParseFiles("template/login.html")
-
-	// redis.Set("lichao#20200509#zhy", []byte(text))
-	t.Execute(w, "")
-	// t.Execute(w, []string{"bgbiao", "biaoge"})
-	// fmt.Fprintf(w, t)
-}
-
-func UserLoginHandler(response http.ResponseWriter, request *http.Request) {
-	fmt.Println("Handler Hello")
-
-	t, _ := template.ParseFiles("template/content.html")
-	// d, _ := redis.Get("lichao#20200509#zhy")
-	t.Execute(response, string(text))
-	// fmt.Fprintf(response, "Login Success")
-}

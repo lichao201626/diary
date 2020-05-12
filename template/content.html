@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Diary</title>
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8880/static/css/content.css" />
+</head>
+<body>
+	<div id="maxname" style="width:100%;">
+      <div id="hname" style="background-color:#666FFF;">
+        <h1 style="margin-bottom:0;text-align:center;">Read</h1>
+      </div>
+      <div id="menu" style="background-color:#FFFFFF;height:800px;width:10%;float:left;">    
+          菜单<br/>
+          num1<br/>
+          num2<br/>
+          <a onclick="window.alert(1)">Do<br/></a>
+          <a onclick="window.alert(1)">Do<br/></a>
+          <a href="http://127.0.0.1:8880/hello">New</a>
+          <a onclick="window.alert(1)">Do<br/></a>
+      </div>
+      <div id="content" style="background-color:#FFFF00;height: 800px; width: 80%; float:left;">
+            <textarea>
+            {{ .}}
+        </textarea>
+      </div>
+      <div id="right" style="background-color:#000000;color:#FFFFFF;height:800px;width:10%;float:right;">
+          comments
+      </div>
+      <div id="bool" style="background-color:#F0F8FF;clear:both;text-align:center;">
+        contact
+      </div>
+  </div>
+</body>
+</html>

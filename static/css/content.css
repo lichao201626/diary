@@ -1,0 +1,13 @@
+
+body {
+  background-position: center center;
+}
+
+textarea {
+  height: 800px;
+  width: 100%;
+  resize: none;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  font-size: 1.5em;
+}
