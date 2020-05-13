@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-var text = `
+var Text = `
 葬花吟--
 			花谢花飞飞满天，红消香断有谁怜？
 			游丝软系飘春榭，落絮轻沾扑绣帘。
@@ -63,11 +63,33 @@ func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
 	// fmt.Fprintf(w, t)
 }
 
+type body struct {
+	username string
+	password string
+}
+
 func UserLoginHandler(response http.ResponseWriter, request *http.Request) {
 	fmt.Println("Handler Hello")
+	fmt.Println("r.Method = ", request.Method)
+	fmt.Println("r.URL = ", request.URL)
+	fmt.Println("r.Header = ", request.Header)
+
+	fmt.Println("r.Body = ", request.Body)
+
+	request.ParseForm()
+
+	// 第一种方式
+	// username := request.Form["username"][0]
+	// password := request.Form["password"][0]
+
+	// 第二种方式
+	username := request.Form.Get("username")
+	password := request.Form.Get("password")
+
+	fmt.Printf("POST form-urlencoded: username=%s, password=%s\n", username, password)
 
 	t, _ := template.ParseFiles("template/content.html")
 	// d, _ := redis.Get("lichao#20200509#zhy")
-	t.Execute(response, string(text))
+	t.Execute(response, string(Text))
 	// fmt.Fprintf(response, "Login Success")
 }
