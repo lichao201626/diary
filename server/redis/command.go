@@ -1,5 +1,7 @@
 package redis
 
+import "bytes"
+
 // String-related commands
 
 func Set(key string, value []byte) error {
@@ -38,6 +40,31 @@ func RandomKey() ([]byte, error) {
 	data, err := con.RawSend(c, b)
 	defer c.Close()
 	return data.([]byte), err
+}
+
+func Keys(pattern string) ([]string, error) {
+	con := Connection{}
+	c, _ := con.Connect()
+	b := CommandBytes("KEYS", pattern)
+	res, err := con.RawSend(c, b)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var ok bool
+	var keydata [][]byte
+
+	if keydata, ok = res.([][]byte); ok {
+		// key data is already a double byte array
+	} else {
+		keydata = bytes.Fields(res.([]byte))
+	}
+	ret := make([]string, len(keydata))
+	for i, k := range keydata {
+		ret[i] = string(k)
+	}
+	return ret, nil
 }
 
 /*

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"diary/server/redis"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -19,9 +20,10 @@ func RandHandler(response http.ResponseWriter, request *http.Request) {
 
 	fmt.Println("r.Body = ", request.Body)
 
-	// randKey, _ := redis.RandomKey()
-	// fmt.Println("randkey", randKey)
-	// content, _ := redis.Get(string(randKey))
+	keys, _ := redis.Keys("Diary:Content:*")
+	fmt.Println("randkey", keys[0])
+	content, _ := redis.Get(keys[0])
 	t, _ := template.ParseFiles("template/content.html")
-	t.Execute(response, string(""))
+	fmt.Println("content", content)
+	t.Execute(response, string(content))
 }
