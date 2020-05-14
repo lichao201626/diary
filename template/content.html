@@ -8,29 +8,27 @@
 </head>
 
 <body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="http://127.0.0.1:8880/static/js/content.js"></script>
   <div id="maxname" style="width:100%;">
     <div id="header">
-      Enjoy your reading time
+      Enjoy your reading time (todo add search)
     </div>
-    <div id="left" >
-      <div class="menu" onclick="window.alert(1)">
-        Do1
+    <div id="left">
+      <div class="menu" onclick="write()">
+        write
       </div>
       <div class="split"></div>
-      <div class="menu">
-        <a onclick="window.alert(1)">Do2</a>
+      <div class="menu" onclick="save()">
+        save
       </div>
       <div class="split"></div>
-      <div class="menu">
-        <a onclick="window.alert(1)">Do2</a>
-      </div>
-      <div class="split"></div>
-      <div class="menu">
-        <a onclick="window.alert(1)">Do2</a>
+      <div class="menu" onclick="rand()">
+        rand
       </div>
     </div>
     <div id="content">
-      <textarea>
+      <textarea id="text">
             {{ .}}
         </textarea>
     </div>

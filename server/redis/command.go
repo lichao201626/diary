@@ -31,6 +31,15 @@ func Get(key string) ([]byte, error) {
 	return data.([]byte), err
 }
 
+func RandomKey() ([]byte, error) {
+	con := Connection{}
+	c, _ := con.Connect()
+	b := CommandBytes("RANDOMKEY")
+	data, err := con.RawSend(c, b)
+	defer c.Close()
+	return data.([]byte), err
+}
+
 /*
 func (client *Client) Getset(key string, val []byte) ([]byte, error) {
 	res, err := client.sendCommand("GETSET", key, string(val))

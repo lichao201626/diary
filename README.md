@@ -23,3 +23,7 @@
 /random
 /next
 
+
+/save     post 
+/rand     rand redis key
+/write    content.html empty
